@@ -39,13 +39,13 @@ const userSchema = new mongoose.Schema({
     { timestamp: true });
 
 
-userSchema.static("matchPassword", function (email, password) {
-    console.log(email, password + "matchPassword");;
-    let user = this.findOne({ email: 'sourabh2@gmail.com' });
-    console.log(user.name);
-    console.log(user.salt);
-    if (!user) return false;
-    let hash = createHmac('sha256', user.salt).update(user.password).digest('hex');
+userSchema.static("matchPassword", async function (emailc, password) {
+    //console.log(email, password + "matchPassword");
+    let userfound = await this.findOne({ emailc });
+
+
+    if (!userfound) return false;
+    let hash = createHmac('sha256', userfound.salt).update(userfound.password).digest('hex');
     if (hash === password) return true;
 
 })

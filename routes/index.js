@@ -14,9 +14,11 @@ router.post('/signin', async (req, res) => {
     const password = req.body.password;
     console.log(email, password);
     const isMatch = await model.matchPassword(email, password);
-    if (isMatch) {
+    console.log(isMatch);
+    if (!isMatch) {
         return res.redirect('/');
     }
+    return res.send('some error')
 
 
 })
