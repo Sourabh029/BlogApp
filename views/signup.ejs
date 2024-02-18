@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <%- include("./links/css.ejs") %>
+        <%- include("./nav.ejs") %>
+</head>
+
+<body style="justify-content: center;align-items: center;">
+    <div class="container"
+        style="padding: 25px; border-radius: 5%;margin-left: 100px; background-color: bisque; margin: 5rem; justify-content: center; align-items: center; width: 50rem;">
+        <!-- <%- include("./links/signupform.ejs") %> -->
+
+        <form action="/user/signup" method="post">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" id="email">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Signup</button>
+    </div>
+
+
+    <%- include("./links/js.ejs") %>
+</body>
+
+</html>
