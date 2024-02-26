@@ -12,6 +12,22 @@
 <body>
 
     <%- include('./nav') %>
+        <div class="container">
+            <% blogs.forEach(element=> { %>
+                <div class="card" style="width:400px">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <%= element.title %>
+                        </h4>
+                        <p class="card-text">
+                            <%= element.description %>
+                        </p>
+                        <a href="/blog/<%=element._id %>" class="btn btn-primary">view</a>
+                    </div>
+                </div>
+
+                <% }) %>
+        </div>
         <%- include('./links/js'); %>
 
 </html>

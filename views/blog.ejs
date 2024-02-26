@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <%- include('./links/css'); %>
+
+</head>
+
+<body>
+
+    <%- include('./nav') %>
+        <div class="container mt-3 ml-3 mb-3">
+            <h3>
+                <%= locals.blog.title %>
+            </h3>
+            <div class="container">
+                <p>
+                    <%= locals.blog.body %>
+                </p>
+            </div>
+        </div>
+        <form action="./comment/<%=blog._id%>" method="post">
+            <div class="container form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" id="comment" name="comment" rows="1"></textarea>
+                <button class="btn btn-primary mt-3" type="submit">add comment</button>
+            </div>
+        </form>
+        <% if (locals.allcomments) { console.log(locals.comments); %>
+
+
+            <% locals.allcomments.forEach(element=> { %>
+                <div class="container">
+                    <h3>
+                        <%= element.user_id.name %>
+                    </h3>
+                    <p>
+                        <%= element.message %>
+                    </p>
+                </div>
+
+                <% console.log("in list")}) %>
+                    <% } %>
+
+
+                        <%- include('./links/js'); %>
+
+</html>

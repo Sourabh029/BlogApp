@@ -6,6 +6,12 @@ router.get('/signin', (req, res) => {
     res.render('signin');
 })
 
+router.get('/Logout', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/');
+})
+
+
 router.get('/signup', (req, res) => {
     res.render('signup');
 })
@@ -13,12 +19,19 @@ router.post('/signin', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     console.log(email, password);
-    const isMatch = await model.matchPassword(email, password);
-    console.log(isMatch);
-    if (!isMatch) {
-        return res.redirect('/');
+    try {
+        const isMatch = await model.matchPassword(email, password);
+        console.log(isMatch);
+        if (!isMatch) {
+            throw new Error("Invalid email or password");
+        }
+        return res.cookie('token', isMatch).redirect('/');
     }
-    return res.send('some error')
+    catch (err) {
+        console.log("inerr")
+        console.log(err);
+        return res.render('signin', { error: "Invalid email or password" });
+    }
 
 
 })
